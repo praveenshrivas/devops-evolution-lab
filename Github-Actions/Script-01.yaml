@@ -1,0 +1,11 @@
+name: Script-01 - Extremely basic github actions file
+
+on: 
+  workflow_dispatch 
+
+jobs: 
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Hello
+        run: echo "Hello Github Actions!!!"
