@@ -41,4 +41,41 @@ jobs:
 > 4. Click on **Run workflow**  
 > 5. View logs and output  
 
+## ## 🧠 Key Concepts
+
+### 🔹 workflow_dispatch
+- Allows you to **trigger the workflow manually**
+- Useful when you don’t want automatic triggers (like push or pull request)
+
+---
+
+### 🔹 jobs
+- A workflow is made up of **jobs**
+- Each job runs on a specific machine (**runner**)
+
+---
+
+### 🔹 runs-on
+- Defines the **environment** where the job will run  
+
+**Examples:**
+- `ubuntu-latest`  
+- `windows-latest`  
+- `macos-latest`  
+
+---
+
+### 🔹 steps
+- A job contains a sequence of **steps**
+- Steps are executed **one by one**
+
+---
+
+### 🔹 uses
+- Used to call **pre-built actions**
+
+**Example:**
+```yaml
+uses: actions/checkout@v3
+```
 
