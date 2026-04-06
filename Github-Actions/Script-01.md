@@ -79,3 +79,10 @@ jobs:
 uses: actions/checkout@v3
 ```
 
+### 🔹 run
+- Used to execute **shell commands**
+
+**Example:**
+```yaml
+run: echo "Hello Github Actions!!!"
+```
