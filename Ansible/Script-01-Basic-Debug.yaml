@@ -1,0 +1,9 @@
+---
+- name: Script 01 - Extremely basic Playbook
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Print a simple message 
+      debug: 
+        msg: "Hello from the Ansible Script!!!!"
