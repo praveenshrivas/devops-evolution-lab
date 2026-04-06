@@ -1,0 +1,8 @@
+# Start with the light weight base image 
+FROM alpine:latest
+
+# Run a simple echo command 
+RUN echo "Hello from Docker Script 01."
+
+# Default Command when the container starts 
+CMD ["echo", "Container has started!"]
