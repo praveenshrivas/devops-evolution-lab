@@ -33,9 +33,10 @@ jobs:
       - name: Say Hello
         run: echo "Hello Github Actions!!!"
 ---
-▶️ How to Run This Workflow
-Push this file to your GitHub repository
-Go to the Actions tab in your repo
-Select this workflow
-Click on Run workflow
-View logs and output
+## ▶️ How to Run This Workflow
+
+1. Push this file to your GitHub repository  
+2. Go to the **Actions** tab in your repo  
+3. Select this workflow  
+4. Click on **Run workflow**  
+5. View logs and output  
