@@ -1,0 +1,28 @@
+name: Script 2 - Basic Workflow
+
+on:
+  push:
+    branches: 
+      - main
+      - dev 
+
+jobs: 
+  runs-on: ubuntu-latest
+
+  steps:
+    - name: print a welcome message 
+      run: echo "This is the Script 02 Basic"
+
+    - name: show the current directory
+      run: pwd
+      
+    - name: list the files
+      run: ls -la
+      
+    - name: create a sample file
+      run: echo "Hello" > example.txt
+
+    - name: Display the file content
+      run: cat example.txt
+
+    
