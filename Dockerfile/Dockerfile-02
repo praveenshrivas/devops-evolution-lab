@@ -1,1 +1,18 @@
 
+# Base Image 
+FROM python:3.11-alpine
+
+# Set Working Directory 
+WORKDIR /app
+
+# Copy dependency file 
+COPY requirements.txt
+
+# Install Python Dependencies 
+RUN pip install -r requirement.txt
+
+# Copy app files 
+COPY . . 
+
+# Default Command 
+CMD ["python", "app.py"]
