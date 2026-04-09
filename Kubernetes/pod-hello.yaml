@@ -1,0 +1,21 @@
+# This defines the API version of Kubernetes resource
+apiVersion: v1
+
+# This specifies that we are creating a Pod
+kind: Pod
+
+# Metadata contains basic information about the Pod
+metadata: 
+  name: hello-pod                  # Name of the Pod
+  labels:
+    app: hello-kubernetes         # Label used for identification/grouping
+
+# Specification of what the Pod should run
+spec:
+  containers: 
+    - name: hello-container       # Name of the container inside the Pod
+      image: alpine:latest        # Lightweight Alpine Linux image
+
+      # Command to run inside the container
+      # Prints "Hello k8s" and then keeps the container running for 1 hour
+      command: ["sh", "-c", "echo Hello k8s && sleep 3600"]
