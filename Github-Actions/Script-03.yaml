@@ -1,0 +1,45 @@
+# checkout code --> setup language --> install dependencies --> Run Tests --> Show Success/Failure 
+
+name: Script 03 - Basic Workflow (Python)
+
+on: 
+  push:
+    branches: 
+      - main
+      - feature
+  pull_request:
+
+jobs: 
+  run-ci: 
+    runs-on: ubuntu-latest
+
+    steps: 
+      # Step 1 - Checkout Repository 
+      - name: Checkout the Code
+        uses: actions/checkout@v4
+
+      # Step 2 - Setup Python
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with: 
+          python-version: '3.11'
+
+      # Step 3 - Install Dependencies 
+      - name: Install Dependencies 
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+        
+      # Step 4 - Run Tests
+      - name: Run Tests 
+        run: pytest
+        
+      # Step 5 - Success Message 
+      - name: CI Passed 
+        if: success()
+        run: echo "Test Passed"
+
+      # Step 6 - Failure Message 
+      - name: CI Failed 
+        if: failure()
+        run: echo "❌ Test Failed"
