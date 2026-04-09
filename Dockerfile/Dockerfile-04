@@ -1,3 +1,7 @@
+# This Dockerfile uses a multi-stage build to first build your Node.js application and then run it in a smaller, optimized image.
+# In the first stage, it installs dependencies and builds the app (npm run build). 
+# In the second stage, it copies only the required files (build output + dependencies) and starts the app using Node on port 3000.
+
 # ---------- BUILD STAGE -----------
 
 FROM node:18 AS builder
@@ -5,7 +9,7 @@ FROM node:18 AS builder
 # Set Working Directory 
 WORKDIR /app 
 
-# Copy Package.json and install dependencies 
+# Copy package.json and install dependencies 
 COPY package*.json ./
 RUN npm install 
 
@@ -17,16 +21,18 @@ RUN npm run build
 
 
 # ---------- RUNTIME STAGE ---------
+
 FROM node:18-slim
 
 WORKDIR /app 
 
-# copy only build output + node_module from builder 
-COPY --from=builder /app/node_module from builder 
+# Copy only required files from builder
+COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/package*.json ./
 
-#Expose port 
+# Expose port 
 EXPOSE 3000
 
-# start the app
+# Start the app
 CMD ["node", "dist/server.js"]
