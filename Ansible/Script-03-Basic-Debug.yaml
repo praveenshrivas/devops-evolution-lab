@@ -1,0 +1,33 @@
+---
+- name: Script 03 - Copy files and restart the services using handlers
+  hosts: all
+  become: yes
+
+  tasks:
+
+    - name: Ensure NGINX is Installed
+      package:
+        name: nginx
+        state: present
+
+    - name: Copy custom index.html to webserver
+      copy:
+        src: files/index.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: "0644"
+      notify:
+        - restart nginx
+
+    - name: Ensure NGINX is Running
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
