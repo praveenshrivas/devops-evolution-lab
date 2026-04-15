@@ -1,0 +1,36 @@
+name: Script 04 - Matrix Build (Python)
+
+on:
+  push:
+    branches:
+      - main
+      - feature
+  pull_request:
+
+jobs:
+  matrix-ci:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, 3.10]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Tests
+        run: pytest   # or python -m unittest
+
+      - name: Print Version Tested
+        run: echo "Running tests on Python Version: ${{ matrix.python-version }}"
