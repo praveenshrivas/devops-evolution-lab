@@ -1,0 +1,19 @@
+- name: Deploy config using variable and template 
+  hosts: all 
+  become: yes 
+
+  vars_files: 
+    - vars.yaml 
+
+  tasks: 
+    - name: Print the variables first 
+      debug: 
+        msg: "Our Application {{ app_name }} is running on the port {{ app_port }} and in the {{ environment }} environment."
+
+    - name: Deploy App configuration
+      template: 
+        src: template/app.conf.j2
+        dest: /etc/myapp/app.conf
+        owner: root
+        group: root 
+        mode: '0644'
