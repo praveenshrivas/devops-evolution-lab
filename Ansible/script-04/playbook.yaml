@@ -2,13 +2,13 @@
   hosts: all 
   become: yes 
 
-  var_files: 
+  vars_files: 
     - vars.yaml
 
   tasks: 
     - name: Print the variables first
       debug: 
-        msg: "Application {{}} is running on the port {{}} for the {{}} environment."
+        msg: "Application {{ app_name }} is running on the port {{ app_port }} for the {{ environment }} environment."
         
     - name: Create app directory
       file:
@@ -21,7 +21,7 @@
     - name: Deploy App Configuration 
       template: 
         src: templates/app.conf.j2
-        dest: /etc//myapp/app.conf
+        dest: /etc/myapp/app.conf
         owner: root
         group: root
         mode: '0644'
